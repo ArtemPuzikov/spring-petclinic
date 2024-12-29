@@ -38,9 +38,11 @@ pipeline {
         }
     }
     stage('Deploying App to Minikube') {
-        steps {
-            sh 'kubectl apply -f db.yml'
-            sh 'kubectl apply -f petclinic.yml'
+        script {
+            kubernetesDeploy(configs: "db.yml", kubeconfigId: 'kubernetes')
+        }
+        script {
+            kubernetesDeploy(configs: "petclinic.yml", kubeconfigId: 'kubernetes')
         }
     }
   }
