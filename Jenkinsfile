@@ -38,7 +38,7 @@ pipeline {
         }
     }
     stage('Deploying App to Minikube') {
-        withKubeConfig(credentialsId: "some") {
+        withKubeConfig([namespace: "this-other-namespace"]) {
             sh '/usr/local/bin/kubectl apply -f db.yml'
             sh '/usr/local/bin/kubectl apply -f petclinic.yml'
         }
