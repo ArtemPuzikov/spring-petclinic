@@ -38,10 +38,8 @@ pipeline {
         }
     }
     stage('Deploying App to Minikube') {
-        script {
+        steps {
             kubernetesDeploy(configs: "db.yml", kubeconfigId: 'kubernetes')
-        }
-        script {
             kubernetesDeploy(configs: "petclinic.yml", kubeconfigId: 'kubernetes')
         }
     }
