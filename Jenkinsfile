@@ -47,10 +47,8 @@ pipeline {
                 && mv kubectl /bin
                '''
             withKubeConfig([namespace: "this-other-namespace"]) {
-                    sh 'cd k8s/'
-                    sh 'ls -la'
-                    sh 'kubectl apply -f db.yml'
-                    sh 'kubectl apply -f petclinic.yml'
+                    sh 'kubectl apply -f k8s/db.yml'
+                    sh 'kubectl apply -f k8s/petclinic.yml'
             }
         }
     }
