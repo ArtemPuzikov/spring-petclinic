@@ -39,9 +39,16 @@ pipeline {
     }
     stage('Deploying App to Minikube') {
         steps {
+            sh '''
+                apt-get update \
+                && apt-get install -y curl \
+                && curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
+                && chmod 755 kubectl \
+                && mv kubectl /bin
+               '''
             withKubeConfig([namespace: "this-other-namespace"]) {
                     sh 'kubectl apply -f db.yml'
-                    sh 'kubectl apply -f petclinic.yml'
+                    sh '/usr/local/bin/kubectl apply -f petclinic.yml'
             }
         }
     }
