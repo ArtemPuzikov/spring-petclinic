@@ -48,6 +48,7 @@ pipeline {
                '''
             withKubeConfig([namespace: "this-other-namespace"]) {
                     sh 'cd k8s/'
+                    sh 'ls -la'
                     sh 'kubectl apply -f db.yml'
                     sh 'kubectl apply -f petclinic.yml'
             }
