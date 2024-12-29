@@ -37,11 +37,10 @@ pipeline {
             sh 'docker compose ps'
         }
     }
-    stage('Deploying App to Kubernetes') {
+    stage('Deploying App to Minikube') {
         steps {
-            script {
-                kubernetesDeploy(configs: "service.yml", kubeconfigId: 'kubernetes')
-            }
+            sh 'kubectl apply -f db.yml'
+            sh 'kubectl apply -f petclinic.yml'
         }
     }
   }
