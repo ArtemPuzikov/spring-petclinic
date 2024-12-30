@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  parameters {
-    string(name: 'build_version', defaultValue: 'V1.0', description: 'Build version to use for Docker image')
-  }
   stages {
     stage('Checkout') {
       steps {
@@ -55,7 +52,7 @@ pipeline {
                     sh 'apt-get install conntrack -y'
                     sh 'curl -L https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.30.0/crictl-v1.30.0-linux-amd64.tar.gz --output crictl-v1.30.0-linux-amd64.tar.gz'
                     sh 'sudo tar zxvf crictl-v1.30.0-linux-amd64.tar.gz -C /usr/local/bin/'
-                    sh 'minikube start --vm-driver=none --force'
+                    sh 'minikube start  --memory 2048 --cpus=4 --vm-driver=none --force'
                     sh 'kubectl apply -f k8s/db.yml'
                     sh 'kubectl apply -f k8s/petclinic.yml'
             }

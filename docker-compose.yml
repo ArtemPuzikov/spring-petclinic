@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: 'spring-petclinic:latest'
+    image: 'artempuzikov/spring-petclinic:latest'
     build:
       context: .
     container_name: app
