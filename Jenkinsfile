@@ -52,9 +52,7 @@ pipeline {
                           && chmod +x minikube'
                     sh 'sudo mkdir -p /usr/local/bin/ \
                         && sudo install minikube /usr/local/bin/'
-                    sh 'docker system prune'
-
-                    sh 'minikube start --driver=docker'
+                    sh 'minikube start --driver=none'
                     sh 'kubectl apply -f k8s/db.yml'
                     sh 'kubectl apply -f k8s/petclinic.yml'
             }
