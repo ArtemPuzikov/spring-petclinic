@@ -52,7 +52,8 @@ pipeline {
                           && chmod +x minikube'
                     sh 'sudo mkdir -p /usr/local/bin/ \
                         && sudo install minikube /usr/local/bin/'
-                    sh 'minikube start --driver=none'
+                    sh 'apt-get install conntrack -y'
+                    sh 'minikube start --vm-driver=none'
                     sh 'kubectl apply -f k8s/db.yml'
                     sh 'kubectl apply -f k8s/petclinic.yml'
             }
