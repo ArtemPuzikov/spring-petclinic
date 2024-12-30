@@ -12,7 +12,7 @@ pipeline {
     stage('Build and Test') {
       steps {
         sh 'ls -ltr'
-        sh 'rmdir -f minikube'
+        sh 'rmdir minikube'
         // build the project and create a JAR file
         sh 'mvn clean package -DskipTests'
       }
