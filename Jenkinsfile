@@ -53,7 +53,7 @@ pipeline {
                     sh 'sudo mkdir -p /usr/local/bin/ \
                         && sudo install minikube /usr/local/bin/'
                     sh 'apt-get install conntrack -y'
-                    sh 'curl -F https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.26.0/crictl-v1.26.0-linux-amd64.tar.gz'
+                    sh 'curl --output crictl-v1.26.0-linux-amd64.tar.gz "https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.26.0/crictl-v1.26.0-linux-amd64.tar.gz"'
                     sh 'tar zxvf crictl-v1.26.0-linux-amd64.tar.gz -C /usr/local/bin'
                     sh 'minikube start --vm-driver=none --force'
                     sh 'kubectl apply -f k8s/db.yml'
